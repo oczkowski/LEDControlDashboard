@@ -18,7 +18,7 @@ import './Drawer.css';
 
 const useStyles = makeStyles({
     list: {
-        width: 350,
+        width: 300,
         height: '100%',
         display: 'flex',
         flexDirection: 'column'

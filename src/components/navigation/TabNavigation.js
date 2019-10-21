@@ -2,6 +2,8 @@
 import React from 'react';
 // Redux
 import { connect } from 'react-redux';
+// React Router
+import { Link } from 'react-router-dom';
 // Actions
 import { NavigationToggle } from '../../actions';
 // App Bar
@@ -11,8 +13,14 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+// Drawer
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
 // Icons
+import InboxIcon from '@material-ui/icons/MoveToInbox';
 import EmojiObjectsIcon from '@material-ui/icons/EmojiObjects';
+import Icon from '@material-ui/core/Icon';
 // CSS
 import './TabNavigation.css';
 // Components
@@ -48,7 +56,18 @@ const TabNavigation = props => {
                         <MenuIcon />
                     </IconButton>
 
-                    <Drawer>{props.children}</Drawer>
+                    <Drawer>
+                        {props.children.map(navRoute => (
+                            <Link to={navRoute.to}>
+                                <ListItem button>
+                                    <ListItemIcon>
+                                        <Icon>{navRoute.icon}</Icon>
+                                    </ListItemIcon>
+                                    <ListItemText primary={navRoute.text} />
+                                </ListItem>
+                            </Link>
+                        ))}
+                    </Drawer>
                 </Toolbar>
             </AppBar>
         </div>
