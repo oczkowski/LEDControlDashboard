@@ -6,6 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 // Components
 import Chart from '../utilities/Chart';
+import MoneyCard from '../utilities/MoneyCards';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -40,7 +41,13 @@ export default props => {
             </Grid>
             {/* Recent Deposits */}
             <Grid item xs={12} md={5} lg={4}>
-                <Paper className={fixedHeightPaper}>Test</Paper>
+                <Paper className={fixedHeightPaper}>
+                    <MoneyCard
+                        title="Average Daily spend"
+                        value="£0.12"
+                        subValue="Based on last 3 months"
+                    />
+                </Paper>
             </Grid>
             {/* Recent Orders */}
             <Grid item xs={12}>
