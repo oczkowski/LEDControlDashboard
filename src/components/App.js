@@ -16,7 +16,11 @@ const App = () => {
                 <TabNavigation>
                     {[
                         { to: '/', text: 'Dashboard', icon: 'home' },
-                        { to: '/', text: 'Statistics', icon: 'equalizer' }
+                        {
+                            to: '/statistics',
+                            text: 'Statistics',
+                            icon: 'equalizer'
+                        }
                     ]}
                 </TabNavigation>
                 <Container>

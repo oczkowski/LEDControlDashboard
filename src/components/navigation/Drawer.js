@@ -54,7 +54,7 @@ const Drawer = props => {
             onKeyDown={toggleDrawer(false)}
         >
             <div className={classes.topItems}>
-                <List>{items}</List>
+                <List onClick={toggleDrawer(false)}>{items}</List>
             </div>
             <div className={classes.bottomItems}>
                 <Divider />

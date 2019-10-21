@@ -18,7 +18,6 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 // Icons
-import InboxIcon from '@material-ui/icons/MoveToInbox';
 import EmojiObjectsIcon from '@material-ui/icons/EmojiObjects';
 import Icon from '@material-ui/core/Icon';
 // CSS
@@ -57,8 +56,8 @@ const TabNavigation = props => {
                     </IconButton>
 
                     <Drawer>
-                        {props.children.map(navRoute => (
-                            <Link to={navRoute.to}>
+                        {props.children.map((navRoute, index) => (
+                            <Link to={navRoute.to} key={index}>
                                 <ListItem button>
                                     <ListItemIcon>
                                         <Icon>{navRoute.icon}</Icon>
