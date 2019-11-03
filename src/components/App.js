@@ -8,10 +8,14 @@ import history from '../routerHistory';
 import Container from '@material-ui/core/Container';
 // Components
 import Dashboard from './dashboard';
+// Socket IO (Context)
+import socket from '../socket.io';
+window.s = socket;
+const SocketContext = React.createContext(socket);
 
 const App = () => {
     return (
-        <>
+        <SocketContext.Provider>
             <Router history={history}>
                 <TabNavigation>
                     {[
@@ -29,7 +33,7 @@ const App = () => {
                     </Switch>
                 </Container>
             </Router>
-        </>
+        </SocketContext.Provider>
     );
 };
 
