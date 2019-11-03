@@ -7,6 +7,7 @@ import Paper from '@material-ui/core/Paper';
 // Components
 import Chart from '../utilities/Chart';
 import MoneyCard from '../utilities/MoneyCards';
+import Table from '../utilities/Table';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -51,7 +52,9 @@ export default props => {
             </Grid>
             {/* Recent Orders */}
             <Grid item xs={12}>
-                <Paper className={classes.paper}>TEST</Paper>
+                <Paper className={classes.paper}>
+                    <Table />
+                </Paper>
             </Grid>
         </Grid>
     );
