@@ -26,18 +26,27 @@ socket.on('room', function(data) {
 // Keep alive (Checking if device is online)
 let lastconnected = {};
 let ledStatus = {};
+let statusChange = false;
 socket.on('rooms_keepalive', data => (lastconnected = data));
 
 let diff = 2000;
 setInterval(() => {
     for (let key in lastconnected) {
         let latency = new Date() - lastconnected[key] * 1000;
-        ledStatus[key] =
-            latency < diff && diff > 0 - diff ? 'online' : 'reboot';
-        if (latency > diff * 2) ledStatus[key] = 'offline';
+        let newStatus = latency < diff && diff > 0 - diff ? 'online' : 'reboot';
+        if (latency > diff * 2) newStatus = 'offline';
+        // Checking status
+        if (newStatus !== ledStatus[key]) {
+            ledStatus[key] = newStatus;
+            statusChange = true;
+        }
     }
     // Update redux
-    store.dispatch(UpdateOnlineStatus(ledStatus));
+    if (statusChange) {
+        console.log('STATUS CHANGE');
+        statusChange = false;
+        store.dispatch(UpdateOnlineStatus(ledStatus));
+    }
 }, 100);
 
 export default socket;
