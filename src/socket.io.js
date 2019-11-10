@@ -3,7 +3,7 @@ import store from './reduxStore';
 // Socket.io
 import io from 'socket.io-client';
 // Actions
-import { ReceiveRooms } from './actions';
+import { ReceiveRooms, UpdateOnlineStatus } from './actions';
 
 // Creating socket
 const socket = io('http://localhost');
@@ -34,9 +34,10 @@ setInterval(() => {
         let latency = new Date() - lastconnected[key] * 1000;
         ledStatus[key] =
             latency < diff && diff > 0 - diff ? 'online' : 'reboot';
-        if (latency > 7000) ledStatus[key] = 'offline';
+        if (latency > diff * 2) ledStatus[key] = 'offline';
     }
     // Update redux
+    store.dispatch(UpdateOnlineStatus(ledStatus));
 }, 100);
 
 export default socket;
