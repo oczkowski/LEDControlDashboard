@@ -29,13 +29,13 @@ socket.on('rooms_keepalive', data => (lastconnected = data));
 let ledStatus = {};
 let statusChange = false;
 
-let diff = 2000;
+let diff = 3500;
 setInterval(() => {
     // Parse status data
     for (let key in lastconnected) {
         let latency = new Date() - lastconnected[key] * 1000;
         let newStatus = latency < diff && diff > 0 - diff ? 'online' : 'reboot';
-        if (latency > diff * 2) newStatus = 'offline';
+        if (latency > diff * 1.5) newStatus = 'offline';
         // Checking status
         if (newStatus !== ledStatus[key]) {
             ledStatus[key] = newStatus;
