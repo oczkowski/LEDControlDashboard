@@ -11,13 +11,14 @@ const socket = io('http://localhost');
 // On connection success
 socket.on('handshake', function(data) {
     console.warn('[SOCKET] Connection established... Fetching all rooms.');
-    socket.emit('get_rooms', { my: 'data' });
+    socket.emit('get_rooms');
 });
 // Receiving rooms
 socket.on('rooms', function(data) {
     store.dispatch(ReceiveRooms(data));
     console.warn('[SOCKET] All rooms have been fetched.');
 });
+// Receive room
 socket.on('room', function(data) {
     store.dispatch(ReceiveRooms(data));
     console.warn('[SOCKET] A room has been received.');

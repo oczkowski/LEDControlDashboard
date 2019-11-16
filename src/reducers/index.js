@@ -2,9 +2,9 @@
 import { combineReducers } from 'redux';
 // Reducers
 import navigationReducer from './NavigationReducer';
-import socketReducer from './SocketReducer';
+import roomsReducer from './RoomsReducer';
 
 export default combineReducers({
     navigation: navigationReducer,
-    rooms: socketReducer
+    rooms: roomsReducer
 });
