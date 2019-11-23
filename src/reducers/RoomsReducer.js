@@ -10,7 +10,11 @@ import socket from '../socket.io';
 function combineObjectPropertyObject(state, objectToMerge) {
     let combined = {};
     for (let key in objectToMerge) {
-        combined[key] = { ...state[key], ...objectToMerge[key] };
+        combined[key] = {
+            status: 'offline' /* Default offline status */,
+            ...state[key],
+            ...objectToMerge[key]
+        };
     }
     return { ...state, ...combined };
 }
