@@ -35,13 +35,13 @@ socket.on('disconnect', function() {
     alert('Connection to the server lost...');
 });
 
-let diff = 3500;
+let diff = 4500;
 setInterval(() => {
     // Parse status data
     for (let key in lastconnected) {
         let latency = new Date() - lastconnected[key] * 1000;
         let newStatus = latency < diff && diff > 0 - diff ? 'online' : 'reboot';
-        if (latency > diff * 1.5) newStatus = 'offline';
+        if (latency > diff * 1.0) newStatus = 'offline';
         // Checking status
         if (newStatus !== ledStatus[key]) {
             ledStatus[key] = newStatus;
