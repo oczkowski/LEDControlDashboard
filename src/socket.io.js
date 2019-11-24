@@ -30,6 +30,11 @@ socket.on('rooms_keepalive', data => (lastconnected = data));
 let ledStatus = {};
 let statusChange = false;
 
+// Connections lost
+socket.on('disconnect', function() {
+    alert('Connection to the server lost...');
+});
+
 let diff = 3500;
 setInterval(() => {
     // Parse status data
