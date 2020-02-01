@@ -32,7 +32,7 @@ const Dashboard = props => {
 
     return (
         <Grid container spacing={3}>
-            {/* Recent Orders */}
+            {/* Devices */}
             <Grid item xs={12} md={12} lg={12}>
                 <Paper className={classes.paper}>
                     <Devices />
@@ -43,16 +43,16 @@ const Dashboard = props => {
                     </div>
                 </Paper>
             </Grid>
-            {/* Recent Deposits */}
-            <Grid item xs={12} md={4} lg={4}>
+            {/* Estimated bill */}
+            {/* <Grid item xs={12} md={4} lg={4}>
                 <Paper className={fixedHeightPaper}>
                     <MoneyCard
                         title="Average Daily spend"
                         value="£0.12"
-                        subValue="Based on last 3 months"
+                        subValue="Based on last 3 months (NOT WORKING YET)"
                     />
                 </Paper>
-            </Grid>
+            </Grid> */}
         </Grid>
     );
 };

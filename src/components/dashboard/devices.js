@@ -1,5 +1,6 @@
 // React
 import React from 'react';
+import { Link } from 'react-router-dom';
 // Components
 import Table from '../utilities/Table';
 // Redux
@@ -24,14 +25,16 @@ const Devices = props => {
     for (let [key, value] of Object.entries(props.rooms)) {
         rows.push([
             value.roomname || 'Not Assigned',
-            key,
+            <Link to={(value.config.NEW ? `setup` : `edit`) + `/${key}`}>
+                <strong>{key}</strong>
+            </Link>,
             getStatus(value.status, value.config.NEW),
             value.config.NUM_LEDS,
             value.config.LED_TYPE,
             value.config.LOCATION,
             value.config.LOCAL_IP,
             value.config.MAC_ADDRESS,
-            capitalize(value.data.mode)
+            capitalize(value.data ? value.data.mode : '')
         ]);
     }
     return <Table headers={tableHeaders} data={rows} />;
