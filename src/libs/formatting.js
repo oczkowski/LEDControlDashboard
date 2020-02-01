@@ -21,7 +21,6 @@ export const getStatus = (status, isNew = false) => {
     if (status === 'online') style.backgroundColor = '#41b300';
     if (status === 'reboot') style.backgroundColor = '#0278cc';
     if (isNew) {
-        style.cursor = 'pointer';
         style.width = '95px';
         statusString += ' (NEW)';
     }
