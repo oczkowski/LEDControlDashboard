@@ -1,12 +1,12 @@
 import React from 'react';
 // Material UI
-import clsx from 'clsx';
+// import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 // Components
-import MoneyCard from '../utilities/MoneyCards';
+// import MoneyCard from '../utilities/MoneyCards';
 import Devices from './devices';
 // React Router
 import { Link } from 'react-router-dom';
@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
 
 const Dashboard = props => {
     const classes = useStyles();
-    const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+    // const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
     return (
         <Grid container spacing={3}>

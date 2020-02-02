@@ -1,0 +1,8 @@
+{
+    "MAC_ADDRESS": "XX:XX:XX:XX:XX:XX",
+    "LED_TYPE": "SK6812",
+    "LOCATION": "DESK",
+    "NUM_LEDS": 72,
+    "LOCAL_IP": "XXX.XXX.X.X",
+    "NEW": true
+}

@@ -43,7 +43,7 @@ const TabNavigation = props => {
             <AppBar position="static">
                 <Toolbar>
                     <Typography variant="h6" className={classes.title}>
-                        LED Control Panel
+                        <Link to="/">LED Control Panel</Link>
                         <EmojiObjectsIcon style={{ marginLeft: '10px' }} />
                     </Typography>
                     <IconButton
@@ -73,9 +73,6 @@ const TabNavigation = props => {
     );
 };
 
-export default connect(
-    null,
-    {
-        NavigationToggle
-    }
-)(TabNavigation);
+export default connect(null, {
+    NavigationToggle
+})(TabNavigation);

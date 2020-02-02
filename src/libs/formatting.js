@@ -15,7 +15,8 @@ export const getStatus = (status, isNew = false) => {
         borderRadius: '10px',
         fontWeight: '450',
         fontFamily: "'Inconsolata', monospace",
-        userSelect: 'none'
+        userSelect: 'none',
+        display: 'inline-block'
     };
 
     if (status === 'online') style.backgroundColor = '#41b300';
