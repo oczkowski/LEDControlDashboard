@@ -24,7 +24,7 @@ const Devices = props => {
     let rows = [];
     for (let [key, value] of Object.entries(props.rooms)) {
         rows.push([
-            value.roomname || 'Not Assigned',
+            value.config.roomname || 'Not Assigned',
             <Link to={(value.config.NEW ? `setup` : `edit`) + `/${key}`}>
                 <strong>{key}</strong>
             </Link>,
