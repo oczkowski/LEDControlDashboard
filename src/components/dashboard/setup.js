@@ -40,14 +40,11 @@ const Setup = props => {
         NEW: false
     });
 
-    const updateConfig = useCallback(
-        function updateConfig(propObj) {
-            const { NUM_LEDS } = propObj;
-            if (NUM_LEDS && !isFinite(NUM_LEDS)) return;
-            upadeRoomConfig({ ...room_config, ...propObj });
-        },
-        [room_config]
-    );
+    function updateConfig(propObj) {
+        const { NUM_LEDS } = propObj;
+        if (NUM_LEDS && !isFinite(NUM_LEDS)) return;
+        upadeRoomConfig({ ...room_config, ...propObj });
+    }
 
     const [preset, setPreset] = useState('fill');
 
@@ -64,7 +61,7 @@ const Setup = props => {
             updateConfig(room.config);
             setDisabled(false);
         }
-    }, [room, updateConfig]);
+    }, [room]);
 
     if (!room) return <></>;
 
