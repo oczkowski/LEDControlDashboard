@@ -1,0 +1,43 @@
+/* Wrapper for LEDs */
+.ledStrip {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    max-height: 30px;
+    width: 100%;
+    justify-content: center;
+    background-color: white;
+}
+/* Single LED */
+.led {
+    height: 10px;
+    width: 10px;
+    max-width: 10px;
+    border: 1px solid lightgray;
+    flex-shrink: 1;
+    position: relative;
+}
+/* White Color on the LED */
+.led > * {
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    float: left;
+    position: absolute;
+}
+.led > .r {
+    background-color: red;
+    z-index: 1;
+}
+.led > .g {
+    background-color: green;
+    z-index: 2;
+}
+.led > .b {
+    background-color: blue;
+    z-index: 3;
+}
+.led > .w {
+    background-color: #ffffc4;
+    z-index: 4;
+}

@@ -4,12 +4,9 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import Button from '@material-ui/core/Button';
 // Components
 // import MoneyCard from '../utilities/MoneyCards';
 import Devices from './devices';
-// React Router
-import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -36,11 +33,6 @@ const Dashboard = props => {
             <Grid item xs={12} md={12} lg={12}>
                 <Paper className={classes.paper}>
                     <Devices />
-                    <div style={{ marginTop: '20px' }}>
-                        <Link to="/devices">
-                            <Button variant="contained">Manage devices</Button>
-                        </Link>
-                    </div>
                 </Paper>
             </Grid>
             {/* Estimated bill */}

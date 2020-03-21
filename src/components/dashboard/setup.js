@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { getStatus } from '../../libs/formatting';
 // Material UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -8,8 +8,16 @@ import Button from '@material-ui/core/Button';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // Redux
 import { connect } from 'react-redux';
+import history from '../../routerHistory';
+// Actions
+import { UpdateRoomConfig, UpdateRoomData } from '../../actions';
+// Presets
+import fill_preset from '../../data_presets/fill';
 
 import TextField from '@material-ui/core/TextField';
 
@@ -43,7 +51,7 @@ const Setup = props => {
     function updateConfig(propObj) {
         const { NUM_LEDS } = propObj;
         if (NUM_LEDS && !isFinite(NUM_LEDS)) return;
-        upadeRoomConfig({ ...room_config, ...propObj });
+        upadeRoomConfig({ ...room_config, ...propObj, NEW: false });
     }
 
     const [preset, setPreset] = useState('fill');
@@ -61,12 +69,47 @@ const Setup = props => {
             updateConfig(room.config);
             setDisabled(false);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [room]);
+
+    // Form submit
+    function submitForm() {
+        var errors = [];
+        // Validate
+        if (!room_config.roomname) errors.push('Please fill in the room name.');
+        if (!room_config.LOCATION)
+            errors.push('Please fill in the room location.');
+        if (!room_config.LED_TYPE) errors.push('Please fill in the LED Type.');
+        if (!room_config.NUM_LEDS || room_config.NUM_LEDS < 1)
+            errors.push('Please input correct LED Count.');
+        if (!preset) errors.push('Please select a preset.');
+        // Has Validation passed?
+        if (errors.length > 0) {
+            // Not passed
+            const showError = () => {
+                let error = errors.shift();
+                if (error) {
+                    toast.error(error);
+                    setTimeout(showError, 100);
+                }
+            };
+            showError();
+        } else {
+            // Passed!
+            props.UpdateRoomConfig(device_name, room_config);
+            props.UpdateRoomData(device_name, fill_preset);
+            // Display message
+            toast.success('Configuration saved! Redirecting...', {
+                onClose: () => history.push('/')
+            });
+        }
+    }
 
     if (!room) return <></>;
 
     return (
         <Grid container spacing={3}>
+            <ToastContainer autoClose={3000} />
             {/* Setup device */}
             <Grid item xs={12} md={12} lg={12}>
                 <Paper className={classes.paper}>
@@ -126,11 +169,15 @@ const Setup = props => {
                             onChange={e => setPreset(e.target.value)}
                         >
                             <MenuItem value="fill">Fill</MenuItem>
-                            <MenuItem value="fade">Fade</MenuItem>
+                            {/* <MenuItem value="fade">Fade</MenuItem> */}
                         </Select>
                     </FormControl>
                     <div style={{ marginTop: '20px', textAlign: 'right' }}>
-                        <Button disabled={formDisabled} variant="contained">
+                        <Button
+                            onClick={submitForm}
+                            disabled={formDisabled}
+                            variant="contained"
+                        >
                             Save setup
                         </Button>
                     </div>
@@ -147,4 +194,6 @@ const mapSateToProps = state => {
     };
 };
 
-export default connect(mapSateToProps, {})(Setup);
+export default connect(mapSateToProps, { UpdateRoomConfig, UpdateRoomData })(
+    Setup
+);

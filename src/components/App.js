@@ -9,6 +9,7 @@ import Container from '@material-ui/core/Container';
 // Components
 import Dashboard from './dashboard';
 import Setup from './dashboard/setup';
+import Control from './dashboard/control';
 // Socket IO
 import socket from '../socket.io';
 window.s = socket;
@@ -19,14 +20,7 @@ const App = () => {
         <SocketContext.Provider>
             <Router history={history}>
                 <TabNavigation>
-                    {[
-                        { to: '/', text: 'Dashboard', icon: 'home' }
-                        // {
-                        //     to: '/statistics',
-                        //     text: 'Statistics',
-                        //     icon: 'equalizer'
-                        // }
-                    ]}
+                    {[{ to: '/', text: 'Dashboard', icon: 'home' }]}
                 </TabNavigation>
                 <Container>
                     <Switch>
@@ -35,6 +29,11 @@ const App = () => {
                             path="/setup/:device_name"
                             exact
                             component={Setup}
+                        />
+                        <Route
+                            path="/control/:device_name"
+                            exact
+                            component={Control}
                         />
                     </Switch>
                 </Container>
