@@ -12,7 +12,6 @@ import Setup from './dashboard/setup';
 import Control from './dashboard/control';
 // Socket IO
 import socket from '../socket.io';
-window.s = socket;
 const SocketContext = React.createContext(socket);
 
 const App = () => {

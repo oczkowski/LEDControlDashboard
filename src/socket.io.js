@@ -4,9 +4,10 @@ import store from './reduxStore';
 import io from 'socket.io-client';
 // Actions
 import { ReceiveRooms, UpdateOnlineStatus } from './actions';
+const config = require('./config');
 
 // Creating socket
-const socket = io('http://localhost');
+const socket = io(config.socker_url);
 
 // On connection success
 socket.on('handshake', function(data) {

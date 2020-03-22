@@ -1,68 +1,34 @@
+# React JS LED Control and Management Panel
+
+## Part (3/3)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Intro
 
-In the project directory, you can run:
+This in a repo for a project split into 3 repositories. This repo contains the Front-End application allowing to controll the behaviour of the LEDs. This project was built on react for training purposes. After completing a React course on Udemy I've decided to give react a deeper dive and see if I can persist the kowledge over time.
 
-### `npm start`
+## Setup
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+When making this project I assumed that this will be an internal tool for controlling LEDs around my house. This app has no security or authentication system in place so it is fine to run it in either development mode using.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+```bash
+npm start
+```
 
-### `npm test`
+Or build the project to run it on a server. (Please read the next section before building.)
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+npm build
+```
 
-### `npm run build`
+The second option will not start a development server for you and will require you to host the files yourself. All files from the build folder must be placed at the root of the server, alternatively you can use [this](https://create-react-app.dev/docs/deployment/) guide in order to change the base path of the application.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Configuration
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+In order for the application to work correctly our Front-End API needs to connect to a backend Node server via Sockets.
+These are HTTP sockets so there is no need for any custom port/ip configuration.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The default socket URL is `http://localhost`
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+If you're planning to host the API/Socket server anywhere else other than the device you're hosting the API server on please adjust it before building the React Application.
