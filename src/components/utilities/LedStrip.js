@@ -11,7 +11,7 @@ const getLED = (led, i) => {
     const totalBrightness = Object.values(led).reduce((a, c) => a + c);
 
     return (
-        <div className="led" key={i}>
+        <div className="led" key={i} index={i}>
             {Object.entries(led).map((val, i) => {
                 const intensity = val[1];
                 const opacity = (1 / totalBrightness) * intensity;
@@ -38,6 +38,11 @@ export default props => {
     }
 
     // Default empty response
-    if (leds.length > 0) return <div className="ledStrip">{leds}</div>;
+    if (leds.length > 0)
+        return (
+            <div className="ledStrip" onMouseOver={props.onMouseOver}>
+                {leds}
+            </div>
+        );
     return <></>;
 };
